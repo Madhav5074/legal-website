@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro CRT Monitor 3D Viewer</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { width: 100%; height: 100vh; display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: Arial, sans-serif;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Camera auto-rotating (semi-circle)</div>
+    <div id="loading">Loading: 0%</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+        // Set up scene, camera, and renderer
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.body.appendChild(renderer.domElement);
+
+        // Add lighting with shadows from the top
+        const ambientLight = new THREE.AmbientLight(0x808080, 1.0);
+        scene.add(ambientLight);
+
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
+        directionalLight1.position.set(3, 12, 2);
+        directionalLight1.castShadow = true;
+        directionalLight1.shadow.mapSize.width = 512;
+        directionalLight1.shadow.mapSize.height = 512;
+        directionalLight1.shadow.camera.near = 0.5;
+        directionalLight1.shadow.camera.far = 50;
+        directionalLight1.shadow.bias = -0.005;
+        directionalLight1.shadow.radius = 4;
+        scene.add(directionalLight1);
+
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+        directionalLight2.position.set(-3, 10, -2);
+        directionalLight2.castShadow = true;
+        directionalLight2.shadow.mapSize.width = 512;
+        directionalLight2.shadow.mapSize.height = 512;
+        directionalLight2.shadow.camera.near = 0.5;
+        directionalLight2.shadow.camera.far = 50;
+        directionalLight2.shadow.bias = -0.005;
+        directionalLight2.shadow.radius = 4;
+        scene.add(directionalLight2);
+
+        const pointLight = new THREE.PointLight(0x00ffcc, 0.9, 10);
+        pointLight.position.set(0, 1, 2);
+        scene.add(pointLight);
+
+        // Add a subtle plane to receive shadows, blending with the black background
+        const planeGeometry = new THREE.PlaneGeometry(20, 20);
+        const planeMaterial = new THREE.MeshStandardMaterial({
+            color: 0x000000,
+            transparent: true,
+            opacity: 0.05
+        });
+        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        plane.rotation.x = -Math.PI / 2;
+        plane.position.y = -1;
+        plane.receiveShadow = true;
+        scene.add(plane);
+
+        // Variables for camera orbit (semi-circle)
+        const orbitRadius = 2.5; // Updated from 2 to 2.5
+        const orbitSpeed = 0.0007; // Updated from 0.005 to 0.0007
+        let time = 0;
+
+        // Load GLB model with loading percentage
+        const loader = new THREE.GLTFLoader();
+        const loadingDiv = document.getElementById('loading');
+        loadingDiv.style.display = 'block';
+        loader.load(
+            'crt_monitor_retro.glb',
+            (gltf) => {
+                const model = gltf.scene;
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+                scene.add(model);
+
+                // Center and scale the model
+                const box = new THREE.Box3().setFromObject(model);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 2.0 / maxDim;
+                model.scale.set(scale, scale, scale);
+                model.position.sub(center.multiplyScalar(scale));
+
+                // Log model details for debugging
+                console.log('Model loaded successfully:', model);
+                console.log('Model position:', model.position);
+                console.log('Model scale:', model.scale);
+
+                // Hide loading text when done
+                loadingDiv.style.display = 'none';
+            },
+            (xhr) => {
+                const percent = Math.round((xhr.loaded / xhr.total) * 100);
+                loadingDiv.textContent = `Loading: ${percent}%`;
+                console.log(percent + '% loaded');
+            },
+            (error) => {
+                console.error('Error loading model:', error);
+                loadingDiv.textContent = 'Error loading model. Check console for details.';
+            }
+        );
+
+        // Set initial camera position
+        camera.position.set(0, 1.3, orbitRadius); // Updated initial y to 1.3
+        camera.lookAt(0, 0, 0);
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Animation loop with camera semi-circle orbit
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Update camera position for semi-circle orbit
+            time += orbitSpeed;
+            const angle = Math.sin(time) * (Math.PI / 2) + (Math.PI / 2); // Maps to [0, π]
+            camera.position.x = orbitRadius * Math.cos(angle); // Swapped with z
+            camera.position.z = orbitRadius * Math.sin(angle); // Swapped with x
+            camera.position.y = 1.3; // Keep near floor
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
