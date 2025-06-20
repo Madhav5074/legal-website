@@ -59,15 +59,36 @@
       letter-spacing: 3px;
     }
     .hero-section {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=1920');
-      background-size: cover;
-      background-position: center;
+      position: relative;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: #f5f5dc;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
     .case-card {
       transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -171,7 +192,7 @@
 <body>
   <!-- Navigation -->
   <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
       <a href="#" class="logo-text">LLP</a>
       <div class="hamburger" id="hamburger">
         <span></span>
@@ -189,7 +210,192 @@
 
   <!-- Hero Section -->
   <section id="home" class="hero-section">
-    <div>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/4639859/4639859-hd_1920_1080_30fps.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">Luxe Legal Publications</h1>
+      <p class="text-lg md:text-xl mb-8 tracking-wide">Justice Meets Elegance</p>
+      <a href="#cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-8 py-3 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">Discover Cases</a>
+    </div>
+  </section>
+
+  <!-- Cases Section -->
+  <section id="cases" class="py-20">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">Featured Legal Cases</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- Case 1 -->
+        <div class="case-card rounded-lg overflow-hidden">
+          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
+            <p class="text-[#d4c2a7] mb-4">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          </div>
+        </div>
+        <!-- Case 2 -->
+        <div class="case-card rounded-lg overflow-hidden">
+          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
+            <p class="text-[#d4c2a7] mb-4">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          </div>
+        </div>
+        <!-- Case 3 -->
+        <div class="case-card rounded-lg overflow-hidden">
+          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
+            <p class="text-[#d4c2a7] mb-4">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-[#1a1a1a]">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]"> oriented: center;
+      margin-bottom: 12px;
+      color: #f5f5dc;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+    }
+    .case-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background-color: #000000;
+      border: 1px solid #f5f5dc;
+    }
+    .case-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(245, 245, 220, 0.3);
+    }
+    .nav-link {
+      position: relative;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: #f5f5dc;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .logo-text {
+      font-family: 'Didot', serif;
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #f5f5dc;
+      font-weight: 700;
+    }
+    .btn-luxe {
+      font-family: 'Didot', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: #f5f5dc;
+      transition: all 0.3s ease;
+    }
+    .nav-menu.active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      width: 100%;
+      background-color: #000000;
+      padding: 1rem 0;
+      align-items: center;
+      gap: 1rem;
+    }
+    /* Mobile-specific adjustments */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .case-card {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90%;
+      }
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+      .hero-section p {
+        font-size: 1rem;
+      }
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .nav-link {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
+    <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+      <a href="#" class="logo-text">LLP</a>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Home</a>
+        <a href="#cases" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Cases</a>
+        <a href="#about" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">About</a>
+        <a href="#contact" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="https://videos.pexels.com/video-files/4639859/4639859-hd_1920_1080_30fps.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
       <h1 class="text-5xl md:text-6xl font-bold mb-6">Luxe Legal Publications</h1>
       <p class="text-lg md:text-xl mb-8 tracking-wide">Justice Meets Elegance</p>
       <a href="#cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-8 py-3 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">Discover Cases</a>
@@ -276,7 +482,6 @@
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('active');
       hamburger.classList.toggle('open');
-      // Toggle hamburger animation
       if (hamburger.classList.contains('open')) {
         hamburger.children[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
         hamburger.children[1].style.opacity = '0';
@@ -298,7 +503,6 @@
           top: targetElement.offsetTop - 80,
           behavior: 'smooth'
         });
-        // Close mobile menu after clicking a link
         navMenu.classList.remove('active');
         hamburger.classList.remove('open');
         hamburger.children[0].style.transform = 'none';
