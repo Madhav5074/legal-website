@@ -52,6 +52,7 @@
       color: #f5f5dc;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
     h1, h2, h3 {
       font-family: 'Didot', serif;
@@ -89,11 +90,13 @@
     .hero-content {
       position: relative;
       z-index: 1;
+      padding: 1rem;
     }
     .case-card {
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       background-color: #000000;
       border: 1px solid #f5f5dc;
+      margin: 0 auto;
     }
     .case-card:hover {
       transform: scale(1.05);
@@ -169,22 +172,31 @@
         display: flex;
       }
       .case-card {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 90%;
+        max-width: 100%;
+        width: 100%;
       }
       .hero-section h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
       .hero-section p {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
       .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
       }
       .nav-link {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .hero-section {
+        height: 80vh;
+      }
+      .hero-video {
+        object-fit: cover;
       }
     }
   </style>
@@ -192,7 +204,7 @@
 <body>
   <!-- Navigation -->
   <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
-    <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+    <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
       <a href="#" class="logo-text">LLP</a>
       <div class="hamburger" id="hamburger">
         <span></span>
@@ -211,47 +223,47 @@
   <!-- Hero Section -->
   <section id="home" class="hero-section">
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="https://videos.pexels.com/video-files/4639859/4639859-hd_1920_1080_30fps.mp4" type="video/mp4">
+      <source src="https://videos.pexels.com/video-files/4068315/4068315-hd_1920_1080_30fps.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6">Luxe Legal Publications</h1>
-      <p class="text-lg md:text-xl mb-8 tracking-wide">Justice Meets Elegance</p>
-      <a href="#cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-8 py-3 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">Discover Cases</a>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">Luxe Legal Publications</h1>
+      <p class="text-base md:text-xl mb-8 tracking-wide">Justice Meets Elegance</p>
+      <a href="#cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">Discover Cases</a>
     </div>
   </section>
 
   <!-- Cases Section -->
-  <section id="cases" class="py-20">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">Featured Legal Cases</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+  <section id="cases" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Featured Legal Cases</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Case 1 -->
         <div class="case-card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
-            <p class="text-[#d4c2a7] mb-4">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
+            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
           </div>
         </div>
         <!-- Case 2 -->
         <div class="case-card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
-            <p class="text-[#d4c2a7] mb-4">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-48 md:h-64 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
+            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
           </div>
         </div>
         <!-- Case 3 -->
         <div class="case-card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
-            <p class="text-[#d4c2a7] mb-4">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-48 md:h-64 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
+            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
           </div>
         </div>
       </div>
@@ -259,217 +271,37 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-20 bg-[#1a1a1a]">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]"> oriented: center;
-      margin-bottom: 12px;
-      color: #f5f5dc;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2.5rem;
-    }
-    .case-card {
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      background-color: #000000;
-      border: 1px solid #f5f5dc;
-    }
-    .case-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 24px rgba(245, 245, 220, 0.3);
-    }
-    .nav-link {
-      position: relative;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: -4px;
-      left: 0;
-      background-color: #f5f5dc;
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    .logo-text {
-      font-family: 'Didot', serif;
-      font-size: 1.8rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #f5f5dc;
-      font-weight: 700;
-    }
-    .btn-luxe {
-      font-family: 'Didot', serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.85rem;
-    }
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background-color: #f5f5dc;
-      transition: all 0.3s ease;
-    }
-    .nav-menu.active {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 4rem;
-      left: 0;
-      width: 100%;
-      background-color: #000000;
-      padding: 1rem 0;
-      align-items: center;
-      gap: 1rem;
-    }
-    /* Mobile-specific adjustments */
-    @media (max-width: 768px) {
-      .nav-menu {
-        display: none;
-      }
-      .hamburger {
-        display: flex;
-      }
-      .case-card {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 90%;
-      }
-      .hero-section h1 {
-        font-size: 2.5rem;
-      }
-      .hero-section p {
-        font-size: 1rem;
-      }
-      .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      .nav-link {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
-    <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
-      <a href="#" class="logo-text">LLP</a>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="nav-menu" id="nav-menu">
-        <a href="#home" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Home</a>
-        <a href="#cases" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Cases</a>
-        <a href="#about" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">About</a>
-        <a href="#contact" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero-section">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="https://videos.pexels.com/video-files/4639859/4639859-hd_1920_1080_30fps.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6">Luxe Legal Publications</h1>
-      <p class="text-lg md:text-xl mb-8 tracking-wide">Justice Meets Elegance</p>
-      <a href="#cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-8 py-3 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">Discover Cases</a>
-    </div>
-  </section>
-
-  <!-- Cases Section -->
-  <section id="cases" class="py-20">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">Featured Legal Cases</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <!-- Case 1 -->
-        <div class="case-card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
-            <p class="text-[#d4c2a7] mb-4">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
-          </div>
-        </div>
-        <!-- Case 2 -->
-        <div class="case-card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
-            <p class="text-[#d4c2a7] mb-4">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
-          </div>
-        </div>
-        <!-- Case 3 -->
-        <div class="case-card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-64 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
-            <p class="text-[#d4c2a7] mb-4">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-[#1a1a1a]">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">About Luxe Legal Publications</h2>
-      <p class="text-lg text-[#d4c2a7] max-w-3xl mx-auto text-center tracking-wide">
+  <section id="about" class="py-16 bg-[#1a1a1a]">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">About Luxe Legal Publications</h2>
+      <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto text-center tracking-wide">
         Luxe Legal Publications is dedicated to chronicling legal battles of the world's most prestigious luxury brands. Blending meticulous legal analysis with the sophistication of high fashion, we deliver unparalleled insights at the intersection of law and luxury.
       </p>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-20">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">Contact Us</h2>
-      <div class="max-w-lg mx-auto">
-        <div class="mb-6">
-          <input type="text" placeholder="Name" class="w-full p-4 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
+  <section id="contact" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Contact Us</h2>
+      <div class="max-w-md mx-auto">
+        <div class="mb-4">
+          <input type="text" placeholder="Name" class="w-full p-3 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
         </div>
-        <div class="mb-6">
-          <input type="email" placeholder="Email" class="w-full p-4 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
+        <div class="mb-4">
+          <input type="email" placeholder="Email" class="w-full p-3 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
         </div>
-        <div class="mb-6">
-          <textarea placeholder="Message" class="w-full p-4 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm" rows="5"></textarea>
+        <div class="mb-4">
+          <textarea placeholder="Message" class="w-full p-3 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm" rows="5"></textarea>
         </div>
-        <button class="w-full bg-[#f5f5dc] text-black py-3 rounded-sm btn-luxe hover:bg-[#d4c2a7] transition duration-300">Send Message</button>
+        <button class="w-full bg-[#f5f5dc] text-black py-2 rounded-sm btn-luxe hover:bg-[#d4c2a7] transition duration-300 text-sm">Send Message</button>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="bg-black text-[#f5f5dc] py-8">
-    <div class="container mx-auto px-6 text-center">
+    <div class="container mx-auto px-4 text-center">
       <p class="text-sm tracking-wide">© 2025 Luxe Legal Publications. All Rights Reserved.</p>
     </div>
   </footer>
