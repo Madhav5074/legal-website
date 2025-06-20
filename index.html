@@ -1,171 +1,226 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro CRT Monitor 3D Viewer</title>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { width: 100%; height: 100vh; display: block; }
-        #info {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: white;
-            font-family: Arial, sans-serif;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 5px;
-        }
-        #loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-family: Arial, sans-serif;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Legal Publications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Didot:ital,wght@0,400;0,700;1,400&family=Helvetica+Neue:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #000000;
+      color: #f5f5dc;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3 {
+      font-family: 'Didot', serif;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+    .hero-section {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #f5f5dc;
+    }
+    .case-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background-color: #000000;
+      border: 1px solid #f5f5dc;
+    }
+    .case-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(245, 245, 220, 0.3);
+    }
+    .nav-link {
+      position: relative;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background-color: #f5f5dc;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .logo-text {
+      font-family: 'Didot', serif;
+      font-size: 1.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #f5f5dc;
+      font-weight: 700;
+    }
+    .btn-luxe {
+      font-family: 'Didot', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+  </style>
 </head>
 <body>
-    <div id="info">Camera auto-rotating (semi-circle)</div>
-    <div id="loading">Loading: 0%</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script>
-        // Set up scene, camera, and renderer
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="logo-text">LLP</a>
+      <div class="space-x-12">
+        <a href="#home" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Home</a>
+        <a href="#cases" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Cases</a>
+        <a href="#about" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">About</a>
+        <a href="#contact" class="nav-link text-[#f5f5dc] hover:text-[#d4c2a7]">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        document.body.appendChild(renderer.domElement);
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">Luxe Legal Publications</h1>
+      <p class="text-lg md:text-xl mb-8 tracking-wide">Justice Meets Elegance</p>
+      <a href="#cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-8 py-3 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">Discover Cases</a>
+    </div>
+  </section>
 
-        // Add lighting with shadows from the top
-        const ambientLight = new THREE.AmbientLight(0x808080, 1.0);
-        scene.add(ambientLight);
+  <!-- Cases Section -->
+  <section id="cases" class="py-20">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">Featured Legal Cases</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- Case 1 -->
+        <div class="case-card rounded-lg overflow-hidden">
+          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
+            <p class="text-[#d4c2a7] mb-4">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          </div>
+        </div>
+        <!-- Case 2 -->
+        <div class="case-card rounded-lg overflow-hidden">
+          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
+            <p class="text-[#d4c2a7] mb-4">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          </div>
+        </div>
+        <!-- Case 3 -->
+        <div class="case-card rounded-lg overflow-hidden">
+          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
+            <p class="text-[#d4c2a7] mb-4">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
-        directionalLight1.position.set(3, 12, 2);
-        directionalLight1.castShadow = true;
-        directionalLight1.shadow.mapSize.width = 512;
-        directionalLight1.shadow.mapSize.height = 512;
-        directionalLight1.shadow.camera.near = 0.5;
-        directionalLight1.shadow.camera.far = 50;
-        directionalLight1.shadow.bias = -0.005;
-        directionalLight1.shadow.radius = 4;
-        scene.add(directionalLight1);
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-[#1a1a1a]">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">About Luxe Legal Publications</h2>
+      <p class="text-lg text-[#d4c2a7] max-w-3xl mx-auto text-center tracking-wide">
+        Luxe Legal Publications is dedicated to chronicling legal battles of the world's most prestigious luxury brands. Blending meticulous legal analysis with the sophistication of high fashion, we deliver unparalleled insights at the intersection of law and luxury.
+      </p>
+    </div>
+  </section>
 
-        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
-        directionalLight2.position.set(-3, 10, -2);
-        directionalLight2.castShadow = true;
-        directionalLight2.shadow.mapSize.width = 512;
-        directionalLight2.shadow.mapSize.height = 512;
-        directionalLight2.shadow.camera.near = 0.5;
-        directionalLight2.shadow.camera.far = 50;
-        directionalLight2.shadow.bias = -0.005;
-        directionalLight2.shadow.radius = 4;
-        scene.add(directionalLight2);
+  <!-- Contact Section -->
+  <section id="contact" class="py-20">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-[#f5f5dc]">Contact Us</h2>
+      <div class="max-w-lg mx-auto">
+        <div class="mb-6">
+          <input type="text" placeholder="Name" class="w-full p-4 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
+        </div>
+        <div class="mb-6">
+          <input type="email" placeholder="Email" class="w-full p-4 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
+        </div>
+        <div class="mb-6">
+          <textarea placeholder="Message" class="w-full p-4 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm" rows="5"></textarea>
+        </div>
+        <button class="w-full bg-[#f5f5dc] text-black py-3 rounded-sm btn-luxe hover:bg-[#d4c2a7] transition duration-300">Send Message</button>
+      </div>
+    </div>
+  </section>
 
-        const pointLight = new THREE.PointLight(0x00ffcc, 0.9, 10);
-        pointLight.position.set(0, 1, 2);
-        scene.add(pointLight);
+  <!-- Footer -->
+  <footer class="bg-black text-[#f5f5dc] py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p class="text-sm tracking-wide">© 2025 Luxe Legal Publications. All Rights Reserved.</p>
+    </div>
+  </footer>
 
-        // Add a subtle plane to receive shadows, blending with the black background
-        const planeGeometry = new THREE.PlaneGeometry(20, 20);
-        const planeMaterial = new THREE.MeshStandardMaterial({
-            color: 0x000000,
-            transparent: true,
-            opacity: 0.05
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
         });
-        const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-        plane.rotation.x = -Math.PI / 2;
-        plane.position.y = -1;
-        plane.receiveShadow = true;
-        scene.add(plane);
-
-        // Variables for camera orbit (semi-circle)
-        const orbitRadius = 2.5; // Updated from 2 to 2.5
-        const orbitSpeed = 0.0007; // Updated from 0.005 to 0.0007
-        let time = 0;
-
-        // Load GLB model with loading percentage
-        const loader = new THREE.GLTFLoader();
-        const loadingDiv = document.getElementById('loading');
-        loadingDiv.style.display = 'block';
-        loader.load(
-            'crt_monitor_retro.glb',
-            (gltf) => {
-                const model = gltf.scene;
-                model.traverse((child) => {
-                    if (child.isMesh) {
-                        child.castShadow = true;
-                        child.receiveShadow = true;
-                    }
-                });
-                scene.add(model);
-
-                // Center and scale the model
-                const box = new THREE.Box3().setFromObject(model);
-                const center = box.getCenter(new THREE.Vector3());
-                const size = box.getSize(new THREE.Vector3());
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const scale = 2.0 / maxDim;
-                model.scale.set(scale, scale, scale);
-                model.position.sub(center.multiplyScalar(scale));
-
-                // Log model details for debugging
-                console.log('Model loaded successfully:', model);
-                console.log('Model position:', model.position);
-                console.log('Model scale:', model.scale);
-
-                // Hide loading text when done
-                loadingDiv.style.display = 'none';
-            },
-            (xhr) => {
-                const percent = Math.round((xhr.loaded / xhr.total) * 100);
-                loadingDiv.textContent = `Loading: ${percent}%`;
-                console.log(percent + '% loaded');
-            },
-            (error) => {
-                console.error('Error loading model:', error);
-                loadingDiv.textContent = 'Error loading model. Check console for details.';
-            }
-        );
-
-        // Set initial camera position
-        camera.position.set(0, 1.3, orbitRadius); // Updated initial y to 1.3
-        camera.lookAt(0, 0, 0);
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Animation loop with camera semi-circle orbit
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Update camera position for semi-circle orbit
-            time += orbitSpeed;
-            const angle = Math.sin(time) * (Math.PI / 2) + (Math.PI / 2); // Maps to [0, π]
-            camera.position.x = orbitRadius * Math.cos(angle); // Swapped with z
-            camera.position.z = orbitRadius * Math.sin(angle); // Swapped with x
-            camera.position.y = 1.3; // Keep near floor
-            camera.lookAt(0, 0, 0);
-
-            renderer.render(scene, camera);
-        }
-        animate();
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
