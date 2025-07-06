@@ -219,33 +219,37 @@
         scroll-snap-align: start;
       }
       .all-section-grid {
-        gap: 1rem;
+        gap: 0.5rem; /* Reduced gap for tighter layout */
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
       .all-section-grid .card {
-        aspect-ratio: 1 / 1; /* Ensure square cards */
-        display: flex;
-        flex-direction: column;
+        max-width: 150px; /* Smaller card width for compact layout */
       }
       .all-section-grid .card img {
         width: 100%;
-        height: 50%; /* Image takes half the card height */
+        height: 6rem; /* Smaller image height for compact rectangles */
         object-fit: cover;
       }
       .all-section-grid .card .p-4 {
-        height: 50%; /* Content takes half the card height */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        padding: 0.5rem; /* Reduced padding for compact layout */
       }
       .all-section-grid .card h3 {
-        font-size: 0.9rem; /* Reduced from text-lg (1.125rem) to text-base (0.9rem) */
+        font-size: 0.9rem; /* Consistent with previous update */
       }
       .all-section-grid .card p {
-        font-size: 0.75rem; /* Reduced from text-sm (0.875rem) to text-xs (0.75rem) */
+        font-size: 0.75rem; /* Consistent with previous update */
       }
       .all-section-grid .card a {
-        font-size: 0.75rem; /* Reduced from text-sm (0.875rem) to text-xs (0.75rem) */
+        font-size: 0.85rem; /* Slightly larger for clarity */
+        padding: 0.25rem 0.5rem; /* Add padding for button-like appearance */
+        background-color: rgba(245, 245, 220, 0.1); /* Subtle background for visibility */
+        display: inline-block; /* Ensure proper spacing */
+        border-radius: 2px; /* Slight rounding for button feel */
+      }
+      .all-section-grid .card a:hover {
+        background-color: #d4c2a7; /* Stronger hover effect */
+        color: #000000;
+        text-decoration: underline;
       }
       .card img {
         height: 12rem;
@@ -662,7 +666,7 @@
 
   <section id="all-contact" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <button class="mb-6 bg-transparent border-2 border-[#f55f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Contact Resources</h2>
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto text-center tracking-wide">
         Find all contact resources, including support channels, partnership inquiries, and submission guidelines for the Objection Column. This section is a placeholder for additional contact-related content.
