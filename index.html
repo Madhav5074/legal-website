@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Didot:ital,wght@0,400;0,700;1,400&family=Helvetica+Neue:wght@300;400&display=swap" rel="stylesheet">
   <style>
+    /* CSS remains unchanged */
     body {
       font-family: 'Helvetica Neue', sans-serif;
       background-color: #000000;
@@ -147,6 +148,14 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.5rem;
     }
+    .all-section-grid {
+      width: 100%;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, auto));
+      gap: 1.5rem;
+    }
     .carousel {
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -154,7 +163,43 @@
     .carousel::-webkit-scrollbar {
       display: none;
     }
-    /* Mobile-specific adjustments */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .search-input {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.5rem;
+      border: 1px solid #f5f5dc;
+      background-color: #000000;
+      color: #f5f5dc;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 0.9rem;
+      border-radius: 0;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: #d4c2a7;
+    }
+    .search-button {
+      background-color: transparent;
+      border: 2px solid #f5f5dc;
+      color: #f5f5dc;
+      padding: 0.5rem 1rem;
+      font-family: 'Didot', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .search-button:hover {
+      background-color: #f5f5dc;
+      color: #000000;
+    }
     @media (max-width: 768px) {
       .container {
         padding-left: 0.25rem;
@@ -174,8 +219,11 @@
         flex-shrink: 0;
         scroll-snap-align: start;
       }
+      .all-section-grid {
+        gap: 1rem;
+      }
       .card img {
-        height: 12rem; /* h-48 equivalent */
+        height: 12rem;
       }
       .hero-section h1 {
         font-size: 2rem;
@@ -201,7 +249,13 @@
       .detail-section {
         padding: 5rem 0.5rem 2rem 0.5rem;
       }
-      /* Carousel indicator */
+      .search-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .search-input {
+        width: 90%;
+      }
       .section-grid::after {
         content: 'Swipe to view more';
         display: block;
@@ -215,7 +269,7 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <!-- HTML remains unchanged -->
   <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
     <div class="container mx-auto px-4 py-4 nav-container">
       <a href="#" class="logo-text">LLP</a>
@@ -236,9 +290,7 @@
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div id="main-content">
-    <!-- Hero Section -->
     <section id="home" class="hero-section">
       <video class="hero-video" autoplay muted loop playsinline poster="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500">
         <source src="https://videos.pexels.com/video-files/854995/854995-hd_1920_1080_24fps.mp4" type="video/mp4">
@@ -252,12 +304,10 @@
       </div>
     </section>
 
-    <!-- Featured Legal Cases Section (Most Viewed) -->
     <section id="cases" class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Featured Legal Cases</h2>
         <div class="section-grid carousel">
-          <!-- Case 1 (Most Viewed: 1200 views) -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -266,7 +316,6 @@
               <a href="#case-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-1">Read More</a>
             </div>
           </div>
-          <!-- Case 2 (Second Most Viewed: 1000 views) -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -275,7 +324,6 @@
               <a href="#case-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-2">Read More</a>
             </div>
           </div>
-          <!-- Case 3 (Third Most Viewed: 800 views) -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -291,12 +339,10 @@
       </div>
     </section>
 
-    <!-- Toolkits Section -->
     <section id="toolkits" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Toolkits</h2>
         <div class="section-grid carousel">
-          <!-- Toolkit 1 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -305,7 +351,6 @@
               <a href="#toolkit-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-1">Read More</a>
             </div>
           </div>
-          <!-- Toolkit 2 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -314,7 +359,6 @@
               <a href="#toolkit-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-2">Read More</a>
             </div>
           </div>
-          <!-- Toolkit 3 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -330,12 +374,10 @@
       </div>
     </section>
 
-    <!-- Objection Column Section -->
     <section id="objection" class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Objection Column</h2>
         <div class="section-grid carousel">
-          <!-- Hot Take -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -344,7 +386,6 @@
               <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
             </div>
           </div>
-          <!-- Legal Rant -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -353,7 +394,6 @@
               <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
             </div>
           </div>
-          <!-- Unsolicited Advice -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -369,12 +409,10 @@
       </div>
     </section>
 
-    <!-- Blog Section -->
     <section id="blog" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Blog</h2>
         <div class="section-grid carousel">
-          <!-- Blog 1 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -383,7 +421,6 @@
               <a href="#blog-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-1">Read More</a>
             </div>
           </div>
-          <!-- Blog 2 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -392,7 +429,6 @@
               <a href="#blog-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-2">Read More</a>
             </div>
           </div>
-          <!-- Blog 3 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-48 md:h-64 object-cover">
             <div class="p-4">
@@ -408,7 +444,6 @@
       </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">About Luxe Legal Publications</h2>
@@ -421,7 +456,6 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Contact Us</h2>
@@ -444,12 +478,15 @@
     </section>
   </div>
 
-  <!-- All Cases Section -->
   <section id="all-cases" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Legal Cases</h2>
-      <div class="section-grid carousel">
+      <div class="search-container">
+        <input type="text" placeholder="Search cases..." class="search-input" id="search-all-cases">
+        <button class="search-button" onclick="searchCards('all-cases')">Search</button>
+      </div>
+      <div class="all-section-grid" id="all-cases-grid">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
@@ -478,12 +515,15 @@
     </div>
   </section>
 
-  <!-- All Toolkits Section -->
   <section id="all-toolkits" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Toolkits</h2>
-      <div class="section-grid carousel">
+      <div class="search-container">
+        <input type="text" placeholder="Search toolkits..." class="search-input" id="search-all-toolkits">
+        <button class="search-button" onclick="searchCards('all-toolkits')">Search</button>
+      </div>
+      <div class="all-section-grid" id="all-toolkits-grid">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
@@ -512,12 +552,15 @@
     </div>
   </section>
 
-  <!-- All Objection Column Section -->
   <section id="all-objection" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Objection Column</h2>
-      <div class="section-grid carousel">
+      <div class="search-container">
+        <input type="text" placeholder="Search objection column..." class="search-input" id="search-all-objection">
+        <button class="search-button" onclick="searchCards('all-objection')">Search</button>
+      </div>
+      <div class="all-section-grid" id="all-objection-grid">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
@@ -546,12 +589,15 @@
     </div>
   </section>
 
-  <!-- All Blog Section -->
   <section id="all-blog" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Blog Posts</h2>
-      <div class="section-grid carousel">
+      <div class="search-container">
+        <input type="text" placeholder="Search blog posts..." class="search-input" id="search-all-blog">
+        <button class="search-button" onclick="searchCards('all-blog')">Search</button>
+      </div>
+      <div class="all-section-grid" id="all-blog-grid">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
@@ -580,7 +626,6 @@
     </div>
   </section>
 
-  <!-- All About Section -->
   <section id="all-about" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
@@ -591,7 +636,6 @@
     </div>
   </section>
 
-  <!-- All Contact Section -->
   <section id="all-contact" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
@@ -602,7 +646,6 @@
     </div>
   </section>
 
-  <!-- Case Detail Sections -->
   <section id="case-1" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
@@ -634,7 +677,6 @@
     </div>
   </section>
 
-  <!-- Toolkit Detail Sections -->
   <section id="toolkit-1" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
@@ -666,7 +708,6 @@
     </div>
   </section>
 
-  <!-- Blog Detail Sections -->
   <section id="blog-1" class="detail-section">
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
@@ -698,7 +739,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="bg-black text-[#f5f5dc] py-8">
     <div class="container mx-auto px-4 text-center">
       <p class="text-sm tracking-wide">© 2025 Luxe Legal Publications. All Rights Reserved.</p>
@@ -825,6 +865,46 @@
       hamburger.children[1].style.opacity = '1';
       hamburger.children[2].style.transform = 'none';
     }
+
+    // Search functionality
+    function searchCards(sectionId) {
+      // Check if the grid element exists
+      const grid = document.getElementById(`${sectionId}-grid`);
+      if (!grid) {
+        console.error(`Grid element not found for sectionId: ${sectionId}`);
+        return;
+      }
+
+      const input = document.getElementById(`search-${sectionId}`);
+      if (!input) {
+        console.error(`Search input not found for sectionId: ${sectionId}`);
+        return;
+      }
+
+      const filter = input.value.toLowerCase();
+      const cards = grid.getElementsByClassName('card');
+
+      for (let i = 0; i < cards.length; i++) {
+        const title = cards[i].querySelector('h3').textContent.toLowerCase();
+        if (title.includes(filter)) {
+          cards[i].style.display = '';
+        } else {
+          cards[i].style.display = 'none';
+        }
+      }
+    }
+
+    // Ensure DOM is fully loaded before attaching event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add event listeners for search inputs to trigger on input
+      document.querySelectorAll('.search-input').forEach(input => {
+        input.addEventListener('input', () => {
+          const sectionId = input.id.replace('search-', '');
+          console.log('Search input triggered for section:', sectionId);
+          searchCards(sectionId);
+        });
+      });
+    });
   </script>
 </body>
 </html>
