@@ -57,6 +57,8 @@
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       background-color: #000000;
       border: 1px solid #f5f5dc;
+      max-width: 300px; /* Narrower rectangular cards on desktop */
+      width: 100%;
       margin: 0 auto;
     }
     .card:hover {
@@ -143,8 +145,19 @@
     /* Mobile-specific adjustments */
     @media (max-width: 768px) {
       .card {
-        max-width: 100%;
-        width: 100%;
+        max-width: 120px; /* Narrower cards on mobile for 3-column layout */
+      }
+      .card img {
+        height: 32px; /* Smaller, rectangular images on mobile */
+      }
+      .card h3 {
+        font-size: 0.9rem; /* Smaller title font */
+      }
+      .card p {
+        font-size: 0.7rem; /* Smaller description font */
+      }
+      .card .btn-luxe {
+        font-size: 0.7rem; /* Smaller button font */
       }
       .hero-section h1 {
         font-size: 2rem;
@@ -160,8 +173,8 @@
         font-size: 0.8rem;
       }
       .grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns on mobile */
+        gap: 0.5rem; /* Reduced gap for mobile */
       }
       .hero-section {
         height: 80vh;
@@ -177,6 +190,9 @@
       }
       .detail-section {
         padding: 5rem 0.5rem 2rem 0.5rem;
+      }
+      .detail-section p {
+        font-size: 0.8rem; /* Smaller text in detail sections */
       }
     }
   </style>
@@ -223,10 +239,10 @@
     <section id="cases" class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Featured Legal Cases</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-3 gap-6">
           <!-- Case 1 (Most Viewed: 1200 views) -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
@@ -235,7 +251,7 @@
           </div>
           <!-- Case 2 (Second Most Viewed: 1000 views) -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
@@ -244,7 +260,7 @@
           </div>
           <!-- Case 3 (Third Most Viewed: 800 views) -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
@@ -262,10 +278,10 @@
     <section id="toolkits" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Toolkits</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-3 gap-6">
           <!-- Toolkit 1 -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">IP Protection Guide</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A comprehensive toolkit for safeguarding intellectual property in luxury brands.</p>
@@ -274,7 +290,7 @@
           </div>
           <!-- Toolkit 2 -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Trademark Strategy</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Essential tools for building a robust trademark strategy in global markets.</p>
@@ -283,7 +299,7 @@
           </div>
           <!-- Toolkit 3 -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Anti-Counterfeiting Manual</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Practical steps to combat counterfeiting in the luxury goods industry.</p>
@@ -301,10 +317,10 @@
     <section id="objection" class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Objection Column</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-3 gap-6">
           <!-- Hot Take -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Hot Take: Luxury Law</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Why luxury brands need tougher laws to protect their legacy.</p>
@@ -313,7 +329,7 @@
           </div>
           <!-- Legal Rant -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Legal Rant: Counterfeit Chaos</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">The frustrating reality of fighting fakes in the digital age.</p>
@@ -322,7 +338,7 @@
           </div>
           <!-- Unsolicited Advice -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Unsolicited Advice: Brand Protection</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tips for brands to stay ahead of counterfeiters.</p>
@@ -340,10 +356,10 @@
     <section id="blog" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Blog</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-3 gap-6">
           <!-- Blog 1 -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">The Future of Luxury Law</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Exploring emerging trends in luxury brand protection.</p>
@@ -352,7 +368,7 @@
           </div>
           <!-- Blog 2 -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Navigating IP in Fashion</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Key considerations for intellectual property in the fashion industry.</p>
@@ -361,7 +377,7 @@
           </div>
           <!-- Blog 3 -->
           <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-48 md:h-64 object-cover">
+            <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-64 object-cover">
             <div class="p-4">
               <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Counterfeiting in the Digital Age</h3>
               <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">How luxury brands are tackling online counterfeiting.</p>
@@ -416,9 +432,9 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Legal Cases</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-3 gap-6">
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
@@ -426,7 +442,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
@@ -434,7 +450,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
@@ -450,9 +466,9 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Toolkits</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-3 gap-6">
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">IP Protection Guide</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A comprehensive toolkit for safeguarding intellectual property in luxury brands.</p>
@@ -460,7 +476,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Trademark Strategy</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Essential tools for building a robust trademark strategy in global markets.</p>
@@ -468,7 +484,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Anti-Counterfeiting Manual</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Practical steps to combat counterfeiting in the luxury goods industry.</p>
@@ -484,9 +500,9 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Objection Column</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-3 gap-6">
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Hot Take: Luxury Law</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Why luxury brands need tougher laws to protect their legacy.</p>
@@ -494,7 +510,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Legal Rant: Counterfeit Chaos</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">The frustrating reality of fighting fakes in the digital age.</p>
@@ -502,7 +518,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Unsolicited Advice: Brand Protection</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tips for brands to stay ahead of counterfeiters.</p>
@@ -518,9 +534,9 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Blog Posts</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-3 gap-6">
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">The Future of Luxury Law</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Exploring emerging trends in luxury brand protection.</p>
@@ -528,7 +544,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Navigating IP in Fashion</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Key considerations for intellectual property in the fashion industry.</p>
@@ -536,7 +552,7 @@
           </div>
         </div>
         <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-48 md:h-64 object-cover">
+          <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-64 object-cover">
           <div class="p-4">
             <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Counterfeiting in the Digital Age</h3>
             <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">How luxury brands are tackling online counterfeiting.</p>
@@ -725,7 +741,7 @@
     document.querySelectorAll('[data-detail]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation(); // Prevent parent click events
+        e.stopPropagation();
         const detailId = this.getAttribute('data-detail');
         console.log('Detail link clicked:', detailId);
         const targetElement = document.getElementById(detailId);
@@ -753,7 +769,7 @@
     document.querySelectorAll('a[href^="#all-"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation(); // Prevent parent click events
+        e.stopPropagation();
         const targetId = this.getAttribute('href').substring(1);
         console.log('View All link clicked:', targetId);
         const targetElement = document.getElementById(targetId);
