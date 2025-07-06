@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Didot:ital,wght@0,400;0,700;1,400&family=Helvetica+Neue:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    /* CSS remains unchanged */
     body {
       font-family: 'Helvetica Neue', sans-serif;
       background-color: #000000;
@@ -221,6 +220,32 @@
       }
       .all-section-grid {
         gap: 1rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .all-section-grid .card {
+        aspect-ratio: 1 / 1; /* Ensure square cards */
+        display: flex;
+        flex-direction: column;
+      }
+      .all-section-grid .card img {
+        width: 100%;
+        height: 50%; /* Image takes half the card height */
+        object-fit: cover;
+      }
+      .all-section-grid .card .p-4 {
+        height: 50%; /* Content takes half the card height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .all-section-grid .card h3 {
+        font-size: 0.9rem; /* Reduced from text-lg (1.125rem) to text-base (0.9rem) */
+      }
+      .all-section-grid .card p {
+        font-size: 0.75rem; /* Reduced from text-sm (0.875rem) to text-xs (0.75rem) */
+      }
+      .all-section-grid .card a {
+        font-size: 0.75rem; /* Reduced from text-sm (0.875rem) to text-xs (0.75rem) */
       }
       .card img {
         height: 12rem;
@@ -269,7 +294,6 @@
   </style>
 </head>
 <body>
-  <!-- HTML remains unchanged -->
   <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
     <div class="container mx-auto px-4 py-4 nav-container">
       <a href="#" class="logo-text">LLP</a>
@@ -868,7 +892,6 @@
 
     // Search functionality
     function searchCards(sectionId) {
-      // Check if the grid element exists
       const grid = document.getElementById(`${sectionId}-grid`);
       if (!grid) {
         console.error(`Grid element not found for sectionId: ${sectionId}`);
@@ -896,7 +919,6 @@
 
     // Ensure DOM is fully loaded before attaching event listeners
     document.addEventListener('DOMContentLoaded', () => {
-      // Add event listeners for search inputs to trigger on input
       document.querySelectorAll('.search-input').forEach(input => {
         input.addEventListener('input', () => {
           const sectionId = input.id.replace('search-', '');
