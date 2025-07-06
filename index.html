@@ -45,7 +45,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
       z-index: 0;
     }
     .hero-content {
@@ -54,14 +54,16 @@
       padding: 1rem;
     }
     .card {
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      background-color: #000000;
-      border: 1px solid #f5f5dc;
-      box-sizing: border-box;
+      background-color: #1a1a1a;
+      border: 1px solid #d4c2a7;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 450px;
     }
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 24px rgba(245, 245, 220, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(212, 194, 167, 0.2);
     }
     .nav-link {
       position: relative;
@@ -76,7 +78,7 @@
       height: 1px;
       bottom: -4px;
       left: 0;
-      background-color: #f5f5dc;
+      background-color: #d4c2a7;
       transition: width 0.3s ease;
     }
     .nav-link:hover::after {
@@ -95,12 +97,13 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 0.85rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .hamburger {
       display: flex;
       flex-direction: column;
       cursor: pointer;
-      gap: 5px;
+      gap: 4px;
       margin-right: 1rem;
     }
     .hamburger span {
@@ -133,7 +136,7 @@
     }
     .detail-section {
       display: none;
-      padding: 6rem 1rem 4rem 1rem;
+      padding: 8rem 2rem 6rem 2rem;
       background-color: #000000;
       min-height: 100vh;
     }
@@ -141,26 +144,118 @@
       display: block;
     }
     .section-grid {
+      display: flex;
+      gap: 1rem;
       width: 100%;
-      box-sizing: border-box;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+    }
+    .section-grid .card {
+      scroll-snap-align: start;
+      flex: 0 0 300px;
+      height: 450px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    .section-grid .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+    .section-grid .card h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+    .section-grid .card .content {
+      flex: 1;
+      overflow: auto;
+    }
+    .section-grid .card p {
+      font-size: 0.875rem;
+      margin: 0.5rem 0;
+      color: #d4c2a7;
+    }
+    .section-grid .card a {
+      font-size: 0.875rem;
+      padding: 0.25rem 0.75rem;
+      background-color: rgba(212, 194, 167, 0.1);
+      color: #f5f5dc;
+      text-align: center;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s ease;
+      margin-top: auto;
+      display: block;
+    }
+    .section-grid .card a:hover {
+      background-color: #d4c2a7;
+      color: #000000;
     }
     .all-section-grid {
-      width: 100%;
-      box-sizing: border-box;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(2, minmax(0, auto));
-      gap: 1.5rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      width: 100%;
     }
-    .carousel {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .all-section-grid .card {
+      height: 450px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1rem;
     }
-    .carousel::-webkit-scrollbar {
-      display: none;
+    .all-section-grid .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+    .all-section-grid .card h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+    .all-section-grid .card .content {
+      flex: 1;
+      overflow: auto;
+    }
+    .all-section-grid .card p {
+      font-size: 0.875rem;
+      margin: 0.5rem 0;
+      color: #d4c2a7;
+    }
+    .all-section-grid .card a {
+      font-size: 0.875rem;
+      padding: 0.25rem 0.75rem;
+      background-color: rgba(212, 194, 167, 0.1);
+      color: #f5f5dc;
+      text-align: center;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s ease;
+      margin-top: auto;
+      display: block;
+    }
+    .all-section-grid .card a:hover {
+      background-color: #d4c2a7;
+      color: #000000;
+    }
+    .carousel-fade {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
+      z-index: 10;
+    }
+    .carousel-fade.right {
+      right: 0;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
     }
     .search-container {
       display: flex;
@@ -172,20 +267,20 @@
       width: 100%;
       max-width: 300px;
       padding: 0.5rem;
-      border: 1px solid #f5f5dc;
-      background-color: #000000;
+      border: 1px solid #d4c2a7;
+      background-color: #1a1a1a;
       color: #f5f5dc;
       font-family: 'Helvetica Neue', sans-serif;
       font-size: 0.9rem;
-      border-radius: 0;
+      border-radius: 0.25rem;
       outline: none;
     }
     .search-input:focus {
-      border-color: #d4c2a7;
+      border-color: #f5f5dc;
     }
     .search-button {
-      background-color: transparent;
-      border: 2px solid #f5f5dc;
+      background-color: #1a1a1a;
+      border: 1px solid #d4c2a7;
       color: #f5f5dc;
       padding: 0.5rem 1rem;
       font-family: 'Didot', serif;
@@ -194,65 +289,31 @@
       font-size: 0.85rem;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
+      border-radius: 0.25rem;
     }
     .search-button:hover {
-      background-color: #f5f5dc;
+      background-color: #d4c2a7;
       color: #000000;
     }
     @media (max-width: 768px) {
       .container {
-        padding-left: 0.25rem;
-        padding-right: 0.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
       }
       .section-grid {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 1rem;
-        scroll-padding-left: 0.25rem;
-        scroll-snap-type: x proximity;
-        width: 100%;
+        padding: 0 0.5rem;
       }
       .section-grid .card {
-        width: 250px;
-        flex-shrink: 0;
-        scroll-snap-align: start;
+        flex: 0 0 300px;
+        height: 450px;
       }
       .all-section-grid {
-        gap: 0.5rem; /* Reduced gap for tighter layout */
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+        gap: 1rem;
       }
       .all-section-grid .card {
-        max-width: 150px; /* Smaller card width for compact layout */
-      }
-      .all-section-grid .card img {
         width: 100%;
-        height: 6rem; /* Smaller image height for compact rectangles */
-        object-fit: cover;
-      }
-      .all-section-grid .card .p-4 {
-        padding: 0.5rem; /* Reduced padding for compact layout */
-      }
-      .all-section-grid .card h3 {
-        font-size: 0.9rem; /* Consistent with previous update */
-      }
-      .all-section-grid .card p {
-        font-size: 0.75rem; /* Consistent with previous update */
-      }
-      .all-section-grid .card a {
-        font-size: 0.85rem; /* Slightly larger for clarity */
-        padding: 0.25rem 0.5rem; /* Add padding for button-like appearance */
-        background-color: rgba(245, 245, 220, 0.1); /* Subtle background for visibility */
-        display: inline-block; /* Ensure proper spacing */
-        border-radius: 2px; /* Slight rounding for button feel */
-      }
-      .all-section-grid .card a:hover {
-        background-color: #d4c2a7; /* Stronger hover effect */
-        color: #000000;
-        text-decoration: underline;
-      }
-      .card img {
-        height: 12rem;
+        height: 450px;
       }
       .hero-section h1 {
         font-size: 2rem;
@@ -276,7 +337,7 @@
         height: 200px;
       }
       .detail-section {
-        padding: 5rem 0.5rem 2rem 0.5rem;
+        padding: 8rem 2rem 6rem 2rem;
       }
       .search-container {
         flex-direction: column;
@@ -285,20 +346,29 @@
       .search-input {
         width: 90%;
       }
-      .section-grid::after {
-        content: 'Swipe to view more';
-        display: block;
-        text-align: center;
-        font-size: 0.75rem;
-        color: #d4c2a7;
-        margin-top: 0.5rem;
-        opacity: 0.7;
+    }
+    @media (min-width: 769px) {
+      .section-grid {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+      }
+      .section-grid .card {
+        flex: 1 1 calc(33.33% - 0.67rem);
+        height: 450px;
+      }
+      .all-section-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .all-section-grid .card {
+        flex: 1 1 calc(33.33% - 0.67rem);
+        height: 450px;
       }
     }
   </style>
 </head>
 <body>
-  <nav class="fixed top-0 w-full bg-black shadow-sm z-50">
+  <nav class="fixed top-0 w-full bg-black shadow-md z-50">
     <div class="container mx-auto px-4 py-4 nav-container">
       <a href="#" class="logo-text">LLP</a>
       <div class="hamburger" id="hamburger">
@@ -328,453 +398,508 @@
       <div class="hero-content">
         <h1 class="text-4xl md:text-6xl font-bold mb-6">Luxe Legal Publications</h1>
         <p class="text-base md:text-xl mb-8 tracking-wide">Justice Meets Elegance</p>
-        <a href="#cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">Discover Cases</a>
+        <a href="#cases" class="inline-block bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-6 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300">Discover Cases</a>
       </div>
     </section>
 
     <section id="cases" class="py-16">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Featured Legal Cases</h2>
-        <div class="section-grid carousel">
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Featured Legal Cases</h2>
+        <div class="section-grid">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
-              <a href="#case-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-1">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Dior vs. Counterfeit Markets</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A landmark case protecting Dior's intellectual property. This is...</p>
+              </div>
+              <a href="#case-1" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="case-1">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
-              <a href="#case-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-2">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Chanel Trademark Infringement</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Chanel's pursuit to safeguard its iconic brand. This...</p>
+              </div>
+              <a href="#case-2" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="case-2">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
-              <a href="#case-3" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-3">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Louis Vuitton vs. Imitators</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Louis Vuitton's fight against counterfeit goods. This is...</p>
+              </div>
+              <a href="#case-3" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="case-3">Read More</a>
             </div>
           </div>
         </div>
         <div class="text-center mt-8">
-          <a href="#all-cases" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">View All Cases</a>
+          <a href="#all-cases" class="inline-block bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-6 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300">View All Cases</a>
         </div>
       </div>
     </section>
 
     <section id="toolkits" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Toolkits</h2>
-        <div class="section-grid carousel">
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Toolkits</h2>
+        <div class="section-grid">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">IP Protection Guide</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A comprehensive toolkit for safeguarding intellectual property in luxury brands.</p>
-              <a href="#toolkit-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-1">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">IP Protection Guide</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Safeguarding intellectual property in luxury brands. This is...</p>
+              </div>
+              <a href="#toolkit-1" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="toolkit-1">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Trademark Strategy</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Essential tools for building a robust trademark strategy in global markets.</p>
-              <a href="#toolkit-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-2">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Trademark Strategy</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Building a robust trademark strategy globally. This...</p>
+              </div>
+              <a href="#toolkit-2" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="toolkit-2">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Anti-Counterfeiting Manual</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Practical steps to combat counterfeiting in the luxury goods industry.</p>
-              <a href="#toolkit-3" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-3">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Anti-Counterfeiting Manual</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Combating counterfeiting in luxury goods. This longer...</p>
+              </div>
+              <a href="#toolkit-3" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="toolkit-3">Read More</a>
             </div>
           </div>
         </div>
         <div class="text-center mt-8">
-          <a href="#all-toolkits" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">View All Toolkits</a>
+          <a href="#all-toolkits" class="inline-block bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-6 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300">View All Toolkits</a>
         </div>
       </div>
     </section>
 
     <section id="objection" class="py-16">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Objection Column</h2>
-        <div class="section-grid carousel">
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Objection Column</h2>
+        <div class="section-grid">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Hot Take: Luxury Law</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Why luxury brands need tougher laws to protect their legacy.</p>
-              <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Hot Take: Luxury Law</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Why luxury brands need tougher laws. This is...</p>
+              </div>
+              <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Legal Rant: Counterfeit Chaos</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">The frustrating reality of fighting fakes in the digital age.</p>
-              <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Legal Rant: Counterfeit Chaos</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Fighting fakes in the digital age. This...</p>
+              </div>
+              <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Unsolicited Advice: Brand Protection</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tips for brands to stay ahead of counterfeiters.</p>
-              <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Unsolicited Advice: Brand Protection</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tips to stay ahead of counterfeiters. This...</p>
+              </div>
+              <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
             </div>
           </div>
         </div>
         <div class="text-center mt-8">
-          <a href="#all-objection" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">View All Objection Column</a>
+          <a href="#all-objection" class="inline-block bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-6 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300">View All Objection Column</a>
         </div>
       </div>
     </section>
 
     <section id="blog" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Blog</h2>
-        <div class="section-grid carousel">
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Blog</h2>
+        <div class="section-grid">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">The Future of Luxury Law</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Exploring emerging trends in luxury brand protection.</p>
-              <a href="#blog-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-1">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">The Future of Luxury Law</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Emerging trends in brand protection. This is...</p>
+              </div>
+              <a href="#blog-1" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="blog-1">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Navigating IP in Fashion</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Key considerations for intellectual property in the fashion industry.</p>
-              <a href="#blog-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-2">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Navigating IP in Fashion</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Key IP considerations in fashion. This extended...</p>
+              </div>
+              <a href="#blog-2" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="blog-2">Read More</a>
             </div>
           </div>
-          <div class="card rounded-lg overflow-hidden">
-            <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-48 md:h-64 object-cover">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full">
             <div class="p-4">
-              <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Counterfeiting in the Digital Age</h3>
-              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">How luxury brands are tackling online counterfeiting.</p>
-              <a href="#blog-3" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-3">Read More</a>
+              <h3 class="text-lg md:text-xl font-semibold mb-2">Counterfeiting in the Digital Age</h3>
+              <div class="content">
+                <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tackling online counterfeiting. This longer text...</p>
+              </div>
+              <a href="#blog-3" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="blog-3">Read More</a>
             </div>
           </div>
         </div>
         <div class="text-center mt-8">
-          <a href="#all-blog" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">View All Blog Posts</a>
+          <a href="#all-blog" class="inline-block bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-6 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300">View All Blog Posts</a>
         </div>
       </div>
     </section>
 
     <section id="about" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">About Luxe Legal Publications</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">About Luxe Legal Publications</h2>
         <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto text-center tracking-wide">
-          Luxe Legal Publications is dedicated to chronicling legal battles of the world's most prestigious luxury brands. Blending meticulous legal analysis with the sophistication of high fashion, we deliver unparalleled insights at the intersection of law and luxury.
+          Dedicated to chronicling legal battles of prestigious luxury brands, blending legal analysis with high fashion elegance.
         </p>
         <div class="text-center mt-8">
-          <a href="#all-about" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">View All About Content</a>
+          <a href="#all-about" class="inline-block bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-6 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300">View All About Content</a>
         </div>
       </div>
     </section>
 
     <section id="contact" class="py-16">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Contact Us</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Contact Us</h2>
         <div class="max-w-md mx-auto">
           <div class="mb-4">
-            <input type="text" placeholder="Name" class="w-full p-3 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
+            <input type="text" placeholder="Name" class="w-full p-3 border border-[#d4c2a7] bg-[#1a1a1a] text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#f5f5dc] text-sm">
           </div>
           <div class="mb-4">
-            <input type="email" placeholder="Email" class="w-full p-3 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm">
+            <input type="email" placeholder="Email" class="w-full p-3 border border-[#d4c2a7] bg-[#1a1a1a] text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#f5f5dc] text-sm">
           </div>
           <div class="mb-4">
-            <textarea placeholder="Message" class="w-full p-3 border border-[#f5f5dc] bg-black text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#d4c2a7] text-sm" rows="5"></textarea>
+            <textarea placeholder="Message" class="w-full p-3 border border-[#d4c2a7] bg-[#1a1a1a] text-[#f5f5dc] rounded-sm focus:outline-none focus:border-[#f5f5dc] text-sm" rows="5"></textarea>
           </div>
-          <button class="w-full bg-[#f5f5dc] text-black py-2 rounded-sm btn-luxe hover:bg-[#d4c2a7] transition duration-300 text-sm">Send Message</button>
+          <button class="w-full bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] py-2 rounded-sm btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300 text-sm">Send Message</button>
         </div>
         <div class="text-center mt-8">
-          <a href="#all-contact" class="inline-block bg-transparent border-2 border-[#f5f5dc] px-6 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300">View All Contact Resources</a>
+          <a href="#all-contact" class="inline-block bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-6 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300">View All Contact Resources</a>
         </div>
       </div>
     </section>
   </div>
 
   <section id="all-cases" class="detail-section">
-    <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Legal Cases</h2>
+    <div class="container mx-auto px-4 relative">
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">All Legal Cases</h2>
       <div class="search-container">
         <input type="text" placeholder="Search cases..." class="search-input" id="search-all-cases">
         <button class="search-button" onclick="searchCards('all-cases')">Search</button>
       </div>
       <div class="all-section-grid" id="all-cases-grid">
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A landmark case protecting Dior's intellectual property from global counterfeiting.</p>
-            <a href="#case-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-1">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Dior vs. Counterfeit Markets</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A landmark case protecting Dior's intellectual property. This...</p>
+            </div>
+            <a href="#case-1" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="case-1">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Chanel Trademark Infringement</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Chanel's legal pursuit to safeguard its iconic brand identity.</p>
-            <a href="#case-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-2">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Chanel Trademark Infringement</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Chanel's pursuit to safeguard its iconic brand. This...</p>
+            </div>
+            <a href="#case-2" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="case-2">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Louis Vuitton's fight against counterfeit luxury goods worldwide.</p>
-            <a href="#case-3" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="case-3">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Louis Vuitton vs. Imitators</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Louis Vuitton's fight against counterfeit goods. This...</p>
+            </div>
+            <a href="#case-3" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="case-3">Read More</a>
           </div>
         </div>
       </div>
+      <div class="carousel-fade"></div>
+      <div class="carousel-fade right"></div>
     </div>
   </section>
 
   <section id="all-toolkits" class="detail-section">
-    <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Toolkits</h2>
+    <div class="container mx-auto px-4 relative">
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">All Toolkits</h2>
       <div class="search-container">
         <input type="text" placeholder="Search toolkits..." class="search-input" id="search-all-toolkits">
         <button class="search-button" onclick="searchCards('all-toolkits')">Search</button>
       </div>
       <div class="all-section-grid" id="all-toolkits-grid">
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">IP Protection Guide</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">A comprehensive toolkit for safeguarding intellectual property in luxury brands.</p>
-            <a href="#toolkit-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-1">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">IP Protection Guide</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Safeguarding intellectual property in luxury brands. This...</p>
+            </div>
+            <a href="#toolkit-1" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="toolkit-1">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Trademark Strategy</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Essential tools for building a robust trademark strategy in global markets.</p>
-            <a href="#toolkit-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-2">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Trademark Strategy</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Building a robust trademark strategy globally. This...</p>
+            </div>
+            <a href="#toolkit-2" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="toolkit-2">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Anti-Counterfeiting Manual</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Practical steps to combat counterfeiting in the luxury goods industry.</p>
-            <a href="#toolkit-3" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="toolkit-3">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Anti-Counterfeiting Manual</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Combating counterfeiting in luxury goods. This longer...</p>
+            </div>
+            <a href="#toolkit-3" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="toolkit-3">Read More</a>
           </div>
         </div>
       </div>
+      <div class="carousel-fade"></div>
+      <div class="carousel-fade right"></div>
     </div>
   </section>
 
   <section id="all-objection" class="detail-section">
-    <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Objection Column</h2>
+    <div class="container mx-auto px-4 relative">
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">All Objection Column</h2>
       <div class="search-container">
         <input type="text" placeholder="Search objection column..." class="search-input" id="search-all-objection">
         <button class="search-button" onclick="searchCards('all-objection')">Search</button>
       </div>
       <div class="all-section-grid" id="all-objection-grid">
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Hot Take: Luxury Law</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Why luxury brands need tougher laws to protect their legacy.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Hot Take: Luxury Law</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Why luxury brands need tougher laws. This...</p>
+            </div>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Legal Rant: Counterfeit Chaos" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Legal Rant: Counterfeit Chaos</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">The frustrating reality of fighting fakes in the digital age.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Legal Rant: Counterfeit Chaos</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Fighting fakes in the digital age. This...</p>
+            </div>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Unsolicited Advice: Brand Protection" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Unsolicited Advice: Brand Protection</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tips for brands to stay ahead of counterfeiters.</p>
-            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Unsolicited Advice: Brand Protection</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tips to stay ahead of counterfeiters. This...</p>
+            </div>
+            <a href="#" class="text-[#f5f5dc] hover:underline btn-luxe">Read More</a>
           </div>
         </div>
       </div>
+      <div class="carousel-fade"></div>
+      <div class="carousel-fade right"></div>
     </div>
   </section>
 
   <section id="all-blog" class="detail-section">
-    <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Blog Posts</h2>
+    <div class="container mx-auto px-4 relative">
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">All Blog Posts</h2>
       <div class="search-container">
         <input type="text" placeholder="Search blog posts..." class="search-input" id="search-all-blog">
         <button class="search-button" onclick="searchCards('all-blog')">Search</button>
       </div>
       <div class="all-section-grid" id="all-blog-grid">
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">The Future of Luxury Law</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Exploring emerging trends in luxury brand protection.</p>
-            <a href="#blog-1" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-1">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">The Future of Luxury Law</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Emerging trends in brand protection. This is...</p>
+            </div>
+            <a href="#blog-1" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="blog-1">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Navigating IP in Fashion</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Key considerations for intellectual property in the fashion industry.</p>
-            <a href="#blog-2" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-2">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Navigating IP in Fashion</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Key IP considerations in fashion. This extended...</p>
+            </div>
+            <a href="#blog-2" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="blog-2">Read More</a>
           </div>
         </div>
-        <div class="card rounded-lg overflow-hidden">
-          <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-48 md:h-64 object-cover">
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full">
           <div class="p-4">
-            <h3 class="text-lg md:text-xl font-semibold mb-2 text-[#f5f5dc]">Counterfeiting in the Digital Age</h3>
-            <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">How luxury brands are tackling online counterfeiting.</p>
-            <a href="#blog-3" class="text-[#f5f5dc] hover:underline btn-luxe text-sm md:text-base" data-detail="blog-3">Read More</a>
+            <h3 class="text-lg md:text-xl font-semibold mb-2">Counterfeiting in the Digital Age</h3>
+            <div class="content">
+              <p class="text-[#d4c2a7] mb-4 text-sm md:text-base">Tackling online counterfeiting. This longer text...</p>
+            </div>
+            <a href="#blog-3" class="text-[#f5f5dc] hover:underline btn-luxe" data-detail="blog-3">Read More</a>
           </div>
         </div>
       </div>
+      <div class="carousel-fade"></div>
+      <div class="carousel-fade right"></div>
     </div>
   </section>
 
   <section id="all-about" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All About Content</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">All About Content</h2>
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto text-center tracking-wide">
-        Explore all about Luxe Legal Publications, including our mission, history, and team. This section is a placeholder for additional content about our organization and its dedication to luxury law.
+        Explore our mission, history, and team dedicated to luxury law.
       </p>
     </div>
   </section>
 
   <section id="all-contact" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f55f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Contact Resources</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">All Contact Resources</h2>
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto text-center tracking-wide">
-        Find all contact resources, including support channels, partnership inquiries, and submission guidelines for the Objection Column. This section is a placeholder for additional contact-related content.
+        Find support channels, partnership inquiries, and submission guidelines.
       </p>
     </div>
   </section>
 
   <section id="case-1" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">Dior vs. Counterfeit Markets</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Dior vs. Counterfeit Markets</h2>
       <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        In a landmark legal battle, Dior took on global counterfeit markets to protect its intellectual property. The case centered around unauthorized reproductions of Dior’s iconic designs, which threatened the brand’s reputation for exclusivity and craftsmanship. Through meticulous legal strategy, Dior successfully secured injunctions against several counterfeit operations, setting a precedent for luxury brands worldwide. This case underscores the importance of robust intellectual property protection in the fashion industry, ensuring that creativity and heritage remain safeguarded.
+        In a landmark legal battle, Dior took on global counterfeit markets to protect its intellectual property. The case centered around unauthorized reproductions of Dior’s iconic designs, which threatened the brand’s reputation for exclusivity and craftsmanship. Through meticulous legal strategy, Dior successfully secured injunctions against several counterfeit operations, setting a precedent for luxury brands worldwide.
       </p>
     </div>
   </section>
   <section id="case-2" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">Chanel Trademark Infringement</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Chanel Trademark Infringement</h2>
       <img src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Chanel Trademark Infringement" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        Chanel’s legal pursuit against trademark infringement involved defending its iconic logo and brand identity from unauthorized use. The case targeted entities exploiting Chanel’s reputation through counterfeit goods and misleading branding. Chanel’s legal team demonstrated the brand’s commitment to preserving its legacy, resulting in significant penalties for the infringers. This case highlights the critical role of trademark law in maintaining the integrity of luxury brands in a competitive global market.
+        Chanel’s legal pursuit against trademark infringement involved defending its iconic logo and brand identity from unauthorized use. The case targeted entities exploiting Chanel’s reputation through counterfeit goods and misleading branding, resulting in significant penalties for the infringers.
       </p>
     </div>
   </section>
   <section id="case-3" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">Louis Vuitton vs. Imitators</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Louis Vuitton vs. Imitators</h2>
       <img src="https://images.pexels.com/photos/3766114/pexels-photo-3766114.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Louis Vuitton vs. Imitators" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        Louis Vuitton’s fight against imitators focused on curbing the proliferation of counterfeit luxury goods bearing its signature monogram. The case spanned multiple jurisdictions, tackling both physical and online marketplaces. Louis Vuitton’s legal efforts resulted in the seizure of counterfeit products and significant fines for violators, reinforcing the brand’s commitment to authenticity. This case exemplifies the challenges luxury brands face in combating counterfeiting in the digital age.
+        Louis Vuitton’s fight against imitators focused on curbing the proliferation of counterfeit goods bearing its signature monogram. The case spanned multiple jurisdictions, resulting in the seizure of counterfeit products and significant fines for violators.
       </p>
     </div>
   </section>
 
   <section id="toolkit-1" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">IP Protection Guide</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">IP Protection Guide</h2>
       <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        The IP Protection Guide is an essential resource for luxury brands aiming to safeguard their intellectual property. This toolkit provides detailed strategies for registering trademarks, pursuing copyright protections, and enforcing IP rights globally. It includes practical advice on monitoring markets for infringements and collaborating with legal teams to ensure brand integrity, making it a must-have for any luxury brand navigating the complex world of intellectual property law.
+        The IP Protection Guide provides strategies for registering trademarks, pursuing copyright protections, and enforcing IP rights globally for luxury brands.
       </p>
     </div>
   </section>
   <section id="toolkit-2" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">Trademark Strategy</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Trademark Strategy</h2>
       <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Trademark Strategy" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        The Trademark Strategy toolkit offers a comprehensive approach to building and maintaining a robust trademark portfolio. It covers best practices for trademark registration, international filings, and defending against infringement. Designed for luxury brands, this toolkit emphasizes proactive measures to protect brand identity and provides case studies of successful trademark disputes, ensuring brands remain distinctive in competitive markets.
+        The Trademark Strategy toolkit covers best practices for trademark registration, international filings, and defending against infringement for luxury brands.
       </p>
     </div>
   </section>
   <section id="toolkit-3" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">Anti-Counterfeiting Manual</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Anti-Counterfeiting Manual</h2>
       <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Anti-Counterfeiting Manual" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        The Anti-Counterfeiting Manual equips luxury brands with practical steps to combat counterfeiting. From identifying fake products to pursuing legal action, this toolkit outlines strategies for monitoring online and offline markets, collaborating with customs authorities, and leveraging technology to track infringements. It’s an indispensable guide for brands committed to preserving their authenticity and market value.
+        The Anti-Counterfeiting Manual outlines strategies for monitoring markets, collaborating with customs, and leveraging technology to combat counterfeiting.
       </p>
     </div>
   </section>
 
   <section id="blog-1" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">The Future of Luxury Law</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">The Future of Luxury Law</h2>
       <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        The luxury law landscape is evolving rapidly with the rise of digital markets and global trade. This blog explores emerging trends, including the impact of blockchain on authentication, AI-driven IP monitoring, and the growing importance of sustainability in legal frameworks. Luxury brands must adapt to these changes to protect their heritage while embracing innovation, ensuring they remain leaders in a dynamic industry.
+        The luxury law landscape is evolving with blockchain authentication, AI-driven IP monitoring, and sustainability frameworks.
       </p>
     </div>
   </section>
   <section id="blog-2" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">Navigating IP in Fashion</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Navigating IP in Fashion</h2>
       <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Navigating IP in Fashion" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        Intellectual property is the cornerstone of the fashion industry, protecting designs, logos, and brand identities. This blog delves into key considerations for luxury brands, including navigating international IP laws, avoiding common pitfalls in trademark disputes, and leveraging IP to enhance brand value. Learn how top brands stay ahead in the competitive world of fashion law.
+        Intellectual property is key in fashion, covering international laws, trademark disputes, and brand value enhancement.
       </p>
     </div>
   </section>
   <section id="blog-3" class="detail-section">
     <div class="container mx-auto px-4">
-      <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-[#f5f5dc]">Counterfeiting in the Digital Age</h2>
+      <button class="mb-6 bg-transparent border-2 border-[#d4c2a7] text-[#f5f5dc] px-4 py-2 btn-luxe hover:bg-[#d4c2a7] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Counterfeiting in the Digital Age</h2>
       <img src="https://images.pexels.com/photos/3184311/pexels-photo-3184311.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Counterfeiting in the Digital Age" class="w-full h-64 md:h-96 object-cover rounded-lg mb-6">
       <p class="text-base md:text-lg text-[#d4c2a7] max-w-3xl mx-auto tracking-wide">
-        Online marketplaces have made counterfeiting a growing challenge for luxury brands. This blog examines how brands like Louis Vuitton and Gucci are tackling digital counterfeiting through advanced technology, legal action, and consumer education. Discover the latest strategies for protecting brand authenticity in an increasingly digital world.
+        Online marketplaces challenge luxury brands, tackled with technology, legal action, and consumer education.
       </p>
     </div>
   </section>
 
-  <footer class="bg-black text-[#f5f5dc] py-8">
+  <footer class="bg-[#1a1a1a] text-[#f5f5dc] py-8">
     <div class="container mx-auto px-4 text-center">
       <p class="text-sm tracking-wide">© 2025 Luxe Legal Publications. All Rights Reserved.</p>
     </div>
   </footer>
 
   <script>
-    // Hamburger menu toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const mainContent = document.getElementById('main-content');
@@ -794,11 +919,9 @@
       }
     });
 
-    // Smooth scrolling for navigation links
     document.querySelectorAll('.nav-link').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        console.log('Nav link clicked:', this.getAttribute('href'));
         const targetId = this.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
@@ -807,28 +930,20 @@
             detail.classList.remove('active');
             detail.style.display = 'none';
           });
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
+          window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
           navMenu.classList.remove('active');
           hamburger.classList.remove('open');
           hamburger.children[0].style.transform = 'none';
           hamburger.children[1].style.opacity = '1';
           hamburger.children[2].style.transform = 'none';
-        } else {
-          console.error('Nav target element not found:', targetId);
         }
       });
     });
 
-    // Detail section navigation (for cases, toolkits, blogs)
     document.querySelectorAll('[data-detail]').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
         const detailId = this.getAttribute('data-detail');
-        console.log('Detail link clicked:', detailId);
         const targetElement = document.getElementById(detailId);
         if (targetElement) {
           mainContent.style.display = 'none';
@@ -844,19 +959,14 @@
           hamburger.children[0].style.transform = 'none';
           hamburger.children[1].style.opacity = '1';
           hamburger.children[2].style.transform = 'none';
-        } else {
-          console.error('Detail element not found:', detailId);
         }
       });
     });
 
-    // View All buttons navigation
     document.querySelectorAll('a[href^="#all-"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
         const targetId = this.getAttribute('href').substring(1);
-        console.log('View All link clicked:', targetId);
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
           mainContent.style.display = 'none';
@@ -872,15 +982,11 @@
           hamburger.children[0].style.transform = 'none';
           hamburger.children[1].style.opacity = '1';
           hamburger.children[2].style.transform = 'none';
-        } else {
-          console.error('View All target element not found:', targetId);
         }
       });
     });
 
-    // Show main content
     function showMainContent() {
-      console.log('Showing main content');
       detailSections.forEach(detail => {
         detail.classList.remove('active');
         detail.style.display = 'none';
@@ -894,20 +1000,9 @@
       hamburger.children[2].style.transform = 'none';
     }
 
-    // Search functionality
     function searchCards(sectionId) {
       const grid = document.getElementById(`${sectionId}-grid`);
-      if (!grid) {
-        console.error(`Grid element not found for sectionId: ${sectionId}`);
-        return;
-      }
-
       const input = document.getElementById(`search-${sectionId}`);
-      if (!input) {
-        console.error(`Search input not found for sectionId: ${sectionId}`);
-        return;
-      }
-
       const filter = input.value.toLowerCase();
       const cards = grid.getElementsByClassName('card');
 
@@ -921,12 +1016,22 @@
       }
     }
 
-    // Ensure DOM is fully loaded before attaching event listeners
+    // Truncate text to 13 words and add "..." if exceeded
     document.addEventListener('DOMContentLoaded', () => {
+      const paragraphs = document.querySelectorAll('.card .content p');
+      const wordLimit = 13;
+
+      paragraphs.forEach(p => {
+        const words = p.textContent.trim().split(/\s+/);
+        if (words.length > wordLimit) {
+          const truncated = words.slice(0, wordLimit).join(' ') + '...';
+          p.textContent = truncated;
+        }
+      });
+
       document.querySelectorAll('.search-input').forEach(input => {
         input.addEventListener('input', () => {
           const sectionId = input.id.replace('search-', '');
-          console.log('Search input triggered for section:', sectionId);
           searchCards(sectionId);
         });
       });
