@@ -57,7 +57,7 @@
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       background-color: #000000;
       border: 1px solid #f5f5dc;
-      margin: 0 auto;
+      box-sizing: border-box;
     }
     .card:hover {
       transform: scale(1.05);
@@ -140,21 +140,42 @@
     .detail-section.active {
       display: block;
     }
+    .section-grid {
+      width: 100%;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
     .carousel {
-      -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
-      scrollbar-width: none; /* Hide scrollbar in Firefox */
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     .carousel::-webkit-scrollbar {
-      display: none; /* Hide scrollbar in Chrome, Safari */
+      display: none;
     }
     /* Mobile-specific adjustments */
     @media (max-width: 768px) {
-      .card {
-        width: 300px; /* Fixed width for carousel cards */
-        flex-shrink: 0; /* Prevent cards from shrinking */
+      .container {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
+      .section-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 1rem;
+        scroll-padding-left: 0.25rem;
+        scroll-snap-type: x proximity;
+        width: 100%;
+      }
+      .section-grid .card {
+        width: 250px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
       }
       .card img {
-        height: 48px; /* Restore original mobile image height */
+        height: 12rem; /* h-48 equivalent */
       }
       .hero-section h1 {
         font-size: 2rem;
@@ -162,23 +183,8 @@
       .hero-section p {
         font-size: 0.9rem;
       }
-      .container {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-      }
       .nav-link {
         font-size: 0.8rem;
-      }
-      .section-grid {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        gap: 1rem;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 1rem;
-      }
-      .section-grid .card {
-        scroll-snap-align: start;
       }
       .hero-section {
         height: 80vh;
@@ -194,6 +200,16 @@
       }
       .detail-section {
         padding: 5rem 0.5rem 2rem 0.5rem;
+      }
+      /* Carousel indicator */
+      .section-grid::after {
+        content: 'Swipe to view more';
+        display: block;
+        text-align: center;
+        font-size: 0.75rem;
+        color: #d4c2a7;
+        margin-top: 0.5rem;
+        opacity: 0.7;
       }
     }
   </style>
@@ -240,7 +256,7 @@
     <section id="cases" class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Featured Legal Cases</h2>
-        <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+        <div class="section-grid carousel">
           <!-- Case 1 (Most Viewed: 1200 views) -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
@@ -279,7 +295,7 @@
     <section id="toolkits" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Toolkits</h2>
-        <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+        <div class="section-grid carousel">
           <!-- Toolkit 1 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
@@ -318,7 +334,7 @@
     <section id="objection" class="py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Objection Column</h2>
-        <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+        <div class="section-grid carousel">
           <!-- Hot Take -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
@@ -357,7 +373,7 @@
     <section id="blog" class="py-16 bg-[#1a1a1a]">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">Blog</h2>
-        <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+        <div class="section-grid carousel">
           <!-- Blog 1 -->
           <div class="card rounded-lg overflow-hidden">
             <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
@@ -433,7 +449,7 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Legal Cases</h2>
-      <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+      <div class="section-grid carousel">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Dior vs. Counterfeit Markets" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
@@ -467,7 +483,7 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Toolkits</h2>
-      <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+      <div class="section-grid carousel">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=500" alt="IP Protection Guide" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
@@ -501,7 +517,7 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Objection Column</h2>
-      <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+      <div class="section-grid carousel">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Hot Take: Luxury Law" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
@@ -535,7 +551,7 @@
     <div class="container mx-auto px-4">
       <button class="mb-6 bg-transparent border-2 border-[#f5f5dc] px-4 py-2 text-[#f5f5dc] btn-luxe hover:bg-[#f5f5dc] hover:text-black transition duration-300" onclick="showMainContent()">Back to Home</button>
       <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-[#f5f5dc]">All Blog Posts</h2>
-      <div class="section-grid grid grid-cols-3 gap-6 md:grid-cols-3">
+      <div class="section-grid carousel">
         <div class="card rounded-lg overflow-hidden">
           <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="The Future of Luxury Law" class="w-full h-48 md:h-64 object-cover">
           <div class="p-4">
